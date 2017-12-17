@@ -1,0 +1,69 @@
+/*********************************************************************************
+# Copyright 2014-6 Observational Health Data Sciences and Informatics
+#
+# 
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+********************************************************************************/
+
+/************************
+ ####### #     # ####### ######      #####  ######  #     #           #######      #####     
+ #     # ##   ## #     # #     #    #     # #     # ##   ##    #    # #           #     #    
+ #     # # # # # #     # #     #    #       #     # # # # #    #    # #                 #    
+ #     # #  #  # #     # ######     #       #     # #  #  #    #    # ######       #####     
+ #     # #     # #     # #          #       #     # #     #    #    #       # ### #          
+ #     # #     # #     # #          #     # #     # #     #     #  #  #     # ### #          
+ ####### #     # ####### #           #####  ######  #     #      ##    #####  ### #######  
+                                                                              
+script to create OMOP common data model, version 5.2 for SQL Server database
+last revised: 14-July-2017
+Authors:  Patrick Ryan, Christian Reich
+*************************/
+
+
+
+CREATE TABLE procedure_occurrence
+(
+  procedure_occurrence_id		INTEGER			NOT NULL ,
+  person_id						INTEGER			NOT NULL ,
+  procedure_concept_id			INTEGER			NOT NULL ,
+  procedure_date				DATE			NOT NULL ,
+  procedure_datetime			DATETIME2			NOT NULL ,
+  procedure_type_concept_id		INTEGER			NOT NULL ,
+  modifier_concept_id			INTEGER			NULL ,
+  quantity						INTEGER			NULL ,
+  provider_id					INTEGER			NULL ,
+  visit_occurrence_id			INTEGER			NULL ,
+  procedure_source_value		VARCHAR(50)		NULL ,
+  procedure_source_concept_id	INTEGER			NULL ,
+  qualifier_source_value		VARCHAR(50)		NULL
+)
+;
+
+CREATE TABLE device_exposure
+(
+  device_exposure_id			INTEGER			NOT NULL ,
+  person_id						INTEGER			NOT NULL ,
+  device_concept_id				INTEGER			NOT NULL ,
+  device_exposure_start_date	DATE			NOT NULL ,
+  device_exposure_start_datetime DATETIME2		NOT NULL ,
+  device_exposure_end_date		DATE			NULL ,
+  device_exposure_end_datetime	DATETIME2		NULL ,
+  device_type_concept_id		INTEGER			NOT NULL ,
+  unique_device_id				VARCHAR(50)		NULL ,
+  quantity						INTEGER			NULL ,
+  provider_id					INTEGER			NULL ,
+  visit_occurrence_id			INTEGER			NULL ,
+  device_source_value			VARCHAR(100)	NULL ,
+  device_source_concept_id		INTEGER			NULL
+)
+;
